@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Danh sách lệnh Discord Bot</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --color-bg: #f3f4f6;
+      --color-bg-table: #f8fafc;
+      --color-bg-table-row-hover: #e0e7ff;
+      --color-bg-table-bold: #eef2ff;
+      --color-bg-hero: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+      --color-bg-footer: #f3f4f6;
+      --color-bg-overflow: #fff;
+      --color-text: #22223b;
+      --color-text-hero: #fff;
+      --color-text-hero-sub: #e0e7ff;
+      --color-text-link: #6366f1;
+      --color-table-th: #6366f1;
+      --color-table-th-border: #a5b4fc;
+      --color-table-bold-border: #6366f1;
+      --color-btn-bg: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+      --color-btn-hover-bg: #4f46e5;
+      --color-btn-text: #fff;
+      --color-footer-main: #6366f1;
+      --color-footer-text: #22223b;
+      --shadow-hero: 0 8px 32px 0 rgba(99,102,241,0.18);
+      --shadow-table: 0 2px 8px 0 rgba(99,102,241,0.07);
+      --shadow-btn: 0 4px 16px 0 rgba(99,102,241,0.13);
+      --shadow-btn-hover: 0 8px 32px 0 rgba(99,102,241,0.18);
+      --shadow-overflow: 0 2px 8px 0 rgba(99,102,241,0.05);
+    }
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      transition: background 0.3s, color 0.3s;
+    }
+    .commands-hero {
+      background: var(--color-bg-hero);
+      color: var(--color-text-hero);
+      border-radius: 1.2rem;
+      box-shadow: var(--shadow-hero);
+      padding: 2.5rem 1.5rem 2rem 1.5rem;
+      margin: 2rem auto 1.5rem auto;
+      max-width: 700px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .commands-hero:after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      top: 30px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, #fff3 0%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .commands-hero h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 1.1rem;
+      letter-spacing: -1.5px;
+      text-shadow: 0 2px 12px #6366f1aa;
+      z-index: 1;
+      position: relative;
+    }
+    .commands-hero p {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--color-text-hero-sub);
+      margin-bottom: 0;
+      z-index: 1;
+      position: relative;
+    }
+    .commands-table {
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      box-shadow: var(--shadow-table);
+    }
+    .commands-table th {
+      background: var(--color-table-th);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      border-bottom: 2px solid var(--color-table-th-border);
+      padding: 0.85rem 0.7rem;
+      letter-spacing: 0.5px;
+    }
+    .commands-table th:not(:first-child) {
+      border-top-left-radius: 0;
+    }
+    .commands-table th:not(:last-child) {
+      border-top-right-radius: 0;
+    }
+    .commands-table td {
+      background: var(--color-bg-table);
+      border-bottom: 1px solid #e0e7ff;
+      font-size: 1rem;
+      padding: 0.7rem 0.7rem;
+      vertical-align: top;
+      transition: background 0.2s;
+    }
+    .commands-table tr:hover td {
+      background: var(--color-bg-table-row-hover);
+    }
+    .commands-table tr:last-child td {
+      border-bottom: none;
+    }
+    .commands-table td.font-bold {
+      color: var(--color-table-th);
+      font-weight: 700;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      letter-spacing: 0.5px;
+      background: var(--color-bg-table-bold);
+      border-left: 3px solid var(--color-table-bold-border);
+    }
+    @media (max-width: 700px) {
+      .commands-hero {
+        padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+        font-size: 1rem;
+      }
+      .commands-table th, .commands-table td {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.3rem;
+      }
+    }
+    .cta-btn {
+      margin-top: 0.5rem;
+      font-size: 1.08rem;
+      padding: 0.7rem 2.2rem;
+      border-radius: 0.8rem;
+      font-weight: 800;
+      background: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      box-shadow: var(--shadow-btn);
+      border: none;
+      outline: none;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cta-btn:hover {
+      background: var(--color-btn-hover-bg);
+      color: #fff;
+      box-shadow: var(--shadow-btn-hover);
+    }
+    .overflow-x-auto {
+      overflow-x: auto;
+      border-radius: 0.7rem;
+      margin-bottom: 1.2rem;
+      background: var(--color-bg-overflow);
+      box-shadow: var(--shadow-overflow);
+    }
+    /* Footer custom */
+    .footer-content {
+      font-size: 1.05rem;
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
+    }
+    .footer-content span:first-child {
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+    .bg-gray-100 {
+      background: var(--color-bg-footer) !important;
+      color: var(--color-footer-text);
+      transition: background 0.3s, color 0.3s;
+    }
+    /* Dark mode styles */
+    body.darkmode {
+      --color-bg: #181926;
+      --color-bg-table: #23243a;
+      --color-bg-table-row-hover: #23243a;
+      --color-bg-table-bold: #23243a;
+      --color-bg-hero: linear-gradient(90deg, #3730a3 0%, #2563eb 100%);
+      --color-bg-footer: #23243a;
+      --color-bg-overflow: #181926;
+      --color-text: #e0e7ff;
+      --color-text-hero: #fff;
+      --color-text-hero-sub: #c7d2fe;
+      --color-text-link: #a5b4fc;
+      --color-table-th: #a5b4fc;
+      --color-table-th-border: #6366f1;
+      --color-table-bold-border: #6366f1;
+      --color-btn-bg: linear-gradient(90deg, #3730a3 0%, #2563eb 100%);
+      --color-btn-hover-bg: #3730a3;
+      --color-btn-text: #fff;
+      --color-footer-main: #a5b4fc;
+      --color-footer-text: #e0e7ff;
+      --shadow-hero: 0 8px 32px 0 rgba(99,102,241,0.28);
+      --shadow-table: 0 2px 8px 0 rgba(99,102,241,0.17);
+      --shadow-btn: 0 4px 16px 0 rgba(99,102,241,0.23);
+      --shadow-btn-hover: 0 8px 32px 0 rgba(99,102,241,0.28);
+      --shadow-overflow: 0 2px 8px 0 rgba(99,102,241,0.15);
+    }
+    body.darkmode .commands-hero:after {
+      background: radial-gradient(circle, #a5b4fc33 0%, transparent 70%);
+    }
+    body.darkmode .commands-table th {
+      color: #23243a;
+      background: #a5b4fc;
+      border-bottom: 2px solid #6366f1;
+    }
+    body.darkmode .commands-table td {
+      border-bottom: 1px solid #3730a3;
+    }
+    body.darkmode .commands-table tr:hover td {
+      background: #3730a3;
+    }
+    body.darkmode .commands-table td.font-bold {
+      color: #a5b4fc;
+      background: #23243a;
+      border-left: 3px solid #6366f1;
+    }
+    body.darkmode .cta-btn {
+      background: linear-gradient(90deg, #3730a3 0%, #2563eb 100%);
+      color: #fff;
+    }
+    body.darkmode .cta-btn:hover {
+      background: #3730a3;
+      color: #fff;
+    }
+    body.darkmode .bg-gray-100 {
+      background: #23243a !important;
+      color: #e0e7ff;
+    }
+    body.darkmode .footer-content span:first-child {
+      color: #a5b4fc;
+    }
+    /* Toggle button */
+    .darkmode-toggle-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 1.1rem;
+      border-radius: 0.7rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px 0 rgba(99,102,241,0.10);
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .darkmode-toggle-btn:hover {
+      background: var(--color-btn-hover-bg);
+      color: #fff;
+    }
+    @media (max-width: 700px) {
+      .darkmode-toggle-btn {
+        font-size: 0.95rem;
+        padding: 0.3rem 0.7rem;
+        margin-left: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" style="display:flex;align-items:center;justify-content:space-between;">
+    <div class="logo font-extrabold text-xl">Viet Dynasty</div>
+    <div class="nav-links flex gap-4" style="display:flex;align-items:center;">
+      <a href="index.html" class="text-white">Trang chủ</a>
+      <a href="command.html" class="text-indigo-500 font-bold">Lệnh</a>
+      <a href="premium.html" class="text-white">Premium</a>
+      <a href="support.html" class="text-white">Hỗ trợ</a>
+      <button class="darkmode-toggle-btn" id="darkmode-toggle-btn" aria-label="Chuyển chế độ sáng/tối" title="Chuyển chế độ sáng/tối">
+        <span id="darkmode-btn-icon" style="font-size:1.2em;">🌙</span>
+        <span id="darkmode-btn-text" style="font-size:0.98em;">Dark mode</span>
+      </button>
+    </div>
+  </nav>
+
+  <section>
+    <div class="commands-hero">
+      <h1>Tất cả các lệnh Discord</h1>
+      <p>Dưới đây là danh sách các lệnh mà bạn có thể sử dụng với <span style="color:#a5b4fc;font-weight:700;">Viet Dynasty</span> trên Discord.<br>
+      <span style="font-size:0.98rem;opacity:0.85;">Hãy sử dụng các lệnh này để quản lý server, phát nhạc, và nhiều tính năng hữu ích khác!</span>
+      </p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="commands-table w-full rounded">
+        <thead>
+          <tr>
+            <th class="text-left">Lệnh</th>
+            <th class="text-left">Mô tả</th>
+            <th class="text-left">Ví dụ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-bold">/help</td>
+            <td>Hiển thị danh sách các lệnh và hướng dẫn sử dụng bot.</td>
+            <td>/help</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/ping</td>
+            <td>Kiểm tra độ trễ (ping) của bot.</td>
+            <td>/ping</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/userinfo</td>
+            <td>Xem thông tin người dùng.</td>
+            <td>/userinfo @username</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/serverinfo</td>
+            <td>Xem thông tin máy chủ Discord.</td>
+            <td>/serverinfo</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/avatar</td>
+            <td>Lấy avatar của người dùng.</td>
+            <td>/avatar @username</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/kick</td>
+            <td>Đuổi một thành viên khỏi máy chủ <span style="color:#f59e42;">(quản trị)</span>.</td>
+            <td>/kick @username [lý do]</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/ban</td>
+            <td>Cấm một thành viên khỏi máy chủ <span style="color:#f59e42;">(quản trị)</span>.</td>
+            <td>/ban @username [lý do]</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/unban</td>
+            <td>Bỏ cấm một thành viên.</td>
+            <td>/unban userID</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/clear</td>
+            <td>Xóa một số lượng tin nhắn nhất định trong kênh.</td>
+            <td>/clear 10</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/mute</td>
+            <td>Tắt tiếng một thành viên.</td>
+            <td>/mute @username [thời gian]</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/unmute</td>
+            <td>Bỏ tắt tiếng một thành viên.</td>
+            <td>/unmute @username</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/warn</td>
+            <td>Cảnh cáo một thành viên.</td>
+            <td>/warn @username [lý do]</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/warnings</td>
+            <td>Xem các cảnh cáo của một thành viên.</td>
+            <td>/warnings @username</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/play</td>
+            <td>Phát nhạc từ YouTube hoặc link khác.</td>
+            <td>/play &lt;tên bài hát hoặc link&gt;</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/skip</td>
+            <td>Bỏ qua bài hát hiện tại.</td>
+            <td>/skip</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/stop</td>
+            <td>Dừng phát nhạc và rời khỏi kênh thoại.</td>
+            <td>/stop</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/queue</td>
+            <td>Xem danh sách phát nhạc hiện tại.</td>
+            <td>/queue</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/pause</td>
+            <td>Tạm dừng phát nhạc.</td>
+            <td>/pause</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/resume</td>
+            <td>Tiếp tục phát nhạc.</td>
+            <td>/resume</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/lyrics</td>
+            <td>Xem lời bài hát đang phát.</td>
+            <td>/lyrics</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/remind</td>
+            <td>Tạo lời nhắc cho bạn.</td>
+            <td>/remind 10m Uống nước</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/poll</td>
+            <td>Tạo một cuộc bình chọn.</td>
+            <td>/poll "Bạn thích màu gì?" "Đỏ" "Xanh" "Vàng"</td>
+          </tr>
+          <tr>
+            <td class="font-bold">/suggest</td>
+            <td>Gửi ý kiến đóng góp cho máy chủ hoặc bot.</td>
+            <td>/suggest Thêm lệnh mới</td>
+          </tr>
+          <!-- Thêm các lệnh khác tại đây nếu cần -->
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center mt-4">
+      <a href="https://discord.com/invite/yourbotinvite" class="cta-btn">✨ Mời bot vào server</a>
+    </div>
+  </section>
+
+  <footer class="bg-gray-100 mt-4 rounded-lg shadow p-4">
+    <div class="footer-content flex items-center justify-center gap-4">
+      <span class="text-indigo-500 font-bold">Viet Dynasty</span>
+      <span>&copy; 2024. Đã đăng ký bản quyền.</span>
+    </div>
+  </footer>
+  <script>
+    // Darkmode toggle logic
+    const toggleBtn = document.getElementById('darkmode-toggle-btn');
+    const icon = document.getElementById('darkmode-btn-icon');
+    const text = document.getElementById('darkmode-btn-text');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    function setDarkmode(on) {
+      if (on) {
+        document.body.classList.add('darkmode');
+        icon.textContent = '☀️';
+        text.textContent = 'Light mode';
+        localStorage.setItem('cloudybot-darkmode', '1');
+      } else {
+        document.body.classList.remove('darkmode');
+        icon.textContent = '🌙';
+        text.textContent = 'Dark mode';
+        localStorage.setItem('cloudybot-darkmode', '0');
+      }
+    }
+    // On load: check localStorage or system preference
+    (function() {
+      const saved = localStorage.getItem('cloudybot-darkmode');
+      if (saved === '1' || (saved === null && prefersDark)) {
+        setDarkmode(true);
+      } else {
+        setDarkmode(false);
+      }
+    })();
+    toggleBtn.addEventListener('click', function() {
+      setDarkmode(!document.body.classList.contains('darkmode'));
+    });
+  </script>
+</body>
+</html>
